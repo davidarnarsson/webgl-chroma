@@ -14,4 +14,5 @@ export const VIDEO_ERROR = 'VIDEO_ERROR';
 export const RENDER_PLAY = 'RENDER_PLAY';
 export const RENDER_PAUSE = 'RENDER_PAUSE'; 
 
+export const UPDATE_SHADER = 'UPDATE_SHADER';
 export const SET_SCENE = 'SET_SCENE'; 

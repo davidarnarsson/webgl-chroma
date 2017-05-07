@@ -18,6 +18,8 @@ store.dispatch({
   }
 });
 
+store.subscribe(() => console.log(store.getState()));
+
 const render = Component => {
   ReactDOM.render(
     <AppContainer>

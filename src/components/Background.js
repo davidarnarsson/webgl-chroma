@@ -15,10 +15,14 @@ const Background = ({
     <div>
 
       <a href="#" onClick={_ => selectBackground(id)}>{title}</a>
-      <Video
+      <Video 
         src={src}
         onReady={_ => backgroundReady(id)}
-        onRef={ref => backgroundRef(id, ref)}
+        onRef={ref => {
+          ref.volume = 0;
+          backgroundRef(id, ref);
+          }
+        }
       />
     </div>
   );

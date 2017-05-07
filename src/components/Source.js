@@ -25,17 +25,23 @@ class Source extends React.Component {
   }
 
   componentDidMount() {
-    if (navigator.getUserMedia) {
+    /*if (navigator.getUserMedia) {
       navigator.getUserMedia(
         { video: true },
         this.handleVideo,
         this.videoError
       );
-    }
+    }*/
+  }
+
+  onReady() {
+    const { videoSource } = this.props;
+    this.ref.volume = 0;
+    videoSource(this.ref);
   }
 
   render() {
-    return <video autoPlay={true} ref={r => (this.ref = r)} />;
+    return <video autoPlay={true} loop={true} onCanPlay={this.onReady.bind(this)} ref={r => (this.ref = r)} src="/assets/video.mp4" />;
   }
 }
 

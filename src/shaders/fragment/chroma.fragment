@@ -1,0 +1,28 @@
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+varying vec2 vUv;
+uniform sampler2D video;
+uniform sampler2D replacement;
+uniform vec4 chroma; 
+
+float weightedDistance(vec4 a, vec4 b) {
+    float deltaR = pow(b.r - a.r, 2.0);
+    float deltaG = pow(b.g - a.g, 2.0);
+    float deltaB = pow(b.b - a.b, 2.0); 
+    float meanR = (a.r * 256.0 + b.r * 256.0) / 2.0;
+
+    return sqrt((2.0 + meanR / 256.0) * deltaR + 4.0 * deltaG + (2.0 + (255.0 - meanR) / 256.0) * deltaB);
+}
+
+void main() {
+    vec4 videoColor = texture2D(video, vUv);
+    vec4 replacementColor = texture2D(replacement, vUv); 
+
+    float diff = weightedDistance(videoColor, chroma); 
+
+    float smoothed = smoothstep(0.0, 1.0, diff);
+    vec4 mixed = mix(replacementColor, videoColor, smoothed);
+    gl_FragColor = vec4(mixed.rgb, 1.0);            
+}

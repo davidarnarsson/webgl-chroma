@@ -17,7 +17,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
-    "dev": "webpack-dev-server --watch --colors --https --progress --host 89.160.199.239 --public",
+    "dev": "webpack-dev-server --watch --colors --https --progress",
     "build:dist": "webpack -p --config webpack.production.config.js"
   },
   "dependencies": {
